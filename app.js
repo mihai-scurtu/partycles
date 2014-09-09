@@ -60,11 +60,10 @@ function App(canvas) {
 		$this.ctx.fillText(Math.floor(fps), 25, 25);
 
 		_time = newTime;
-		console.log(Math.floor(1000 / $this.targetFPS) - $this.delta);
-		setTimeout(function() {$this.loop(callback)}, Math.floor(1000 / $this.targetFPS) - $this.delta);
+		setTimeout(function() {$this.loop(callback)}, _frameTimeout());
 	}
 
-	this.frameTime = function() {
+	this.avgFrameTime = function() {
 		var avg = 0;
 
 		if(!_frameTimes || !_frameTimes.length) return 1;
@@ -77,7 +76,11 @@ function App(canvas) {
 	}
 
 	this.getFPS = function() {
-		return 1000 / $this.frameTime();
+		return 1000 / $this.avgFrameTime();
+	}
+
+	var _frameTimeout = function() {
+		return Math.max(1, 2 * Math.floor(1000 / $this.targetFPS) - $this.delta);
 	}
 }
 
