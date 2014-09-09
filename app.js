@@ -39,8 +39,6 @@ function App(canvas) {
 			callback();
 		}
 
-		$this.drawParticles();
-
 		var newTime = (new Date()).getTime();
 		var fps;
 
