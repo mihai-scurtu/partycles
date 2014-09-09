@@ -13,6 +13,8 @@
 	        var y = Math.floor(Math.random() * App.const.MAX_Y);
 
 	        app.addParticle(x, y);
+	      } else {
+	      	app.particles.shift();
 	      }
 
         app.drawParticles();
