@@ -116,15 +116,14 @@ function Particle(x, y, color) {
 	};
 
 	this.draw = function(ctx) {
+		var x = $this.x * App.const.SCALE;
+		var y = $this.y * App.const.SCALE;
+		var radius = $this.scale;
+
 		ctx.fillStyle = $this.color; 
 		ctx.strokeStyle = $this.color;
 		ctx.beginPath();
-		ctx.arc(
-			$this.x * App.const.SCALE,
-			$this.y * App.const.SCALE,
-			$this.scale,
-			0, 2*Math.PI
-		);
+		ctx.arc(x, y, radius, 0, 2*Math.PI);
 		ctx.closePath();
 		ctx.fill();
 	}
