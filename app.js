@@ -1,9 +1,15 @@
 function App(canvas) {
 	var $this = this;
+
+	var _time;
+	var _frameTimes = [];
 	
 	this.canvas = canvas;
 	this.ctx = canvas.getContext('2d');
 	this.particles = [];
+	this.exit = false;
+	this.targetFPS = 60;
+	this.delta;
 	// this.scale = 3;
 
 	this.addParticle = function(x, y, color) {
@@ -11,8 +17,6 @@ function App(canvas) {
 	}
 
 	this.drawParticles = function() {
-		$this.ctx.clearRect(0, 0, App.const.SCALE * App.const.MAX_X, App.const.SCALE * App.const.MAX_Y);
-
 		if(!$this.particles.length) return;
 
 		for(var i = 0; i < $this.particles.length; i++) {
@@ -20,6 +24,58 @@ function App(canvas) {
 			
 			p.draw($this.ctx);			
 		}
+	}
+
+	this.loop = function(callback) {
+		if($this.exit) return 1;
+
+		if(!_time) {
+			_time = (new Date()).getTime();
+		}
+		
+		$this.ctx.clearRect(0, 0, App.const.SCALE * App.const.MAX_X, App.const.SCALE * App.const.MAX_Y);
+
+		if(typeof callback == 'Object') {
+			callback($this);
+		}
+
+		$this.drawParticles();
+
+		var newTime = (new Date()).getTime();
+		var fps;
+
+		$this.delta = newTime - _time;
+
+		if(_frameTimes.length = App.const.FRAME_TIMES_COUNT) {
+			_frameTimes.shift();
+		}
+
+		_frameTimes.push($this.delta);
+
+		fps = $this.getFPS();
+
+		$this.ctx.font = '22px Courier';
+		$this.ctx.fillStyle = '#000000';
+		$this.ctx.fillText(Math.floor(fps), 25, 25);
+
+		_time = newTime;
+		setTimeout($this.loop, Math.floor(1000 / $this.targetFPS));
+	}
+
+	this.frameTime = function() {
+		var avg = 0;
+
+		if(!_frameTimes || !_frameTimes.length) return 1;
+
+		for(var i = 0; i < _frameTimes.length; i++) {
+			avg += _frameTimes[i];
+		}
+
+		return avg / _frameTimes.length;
+	}
+
+	this.getFPS = function() {
+		return 1000 / $this.frameTime();
 	}
 }
 
@@ -36,9 +92,10 @@ App.randomColor = function() {
 }
 
 App.const = {
-	MAX_X: 100,
-	MAX_Y: 50,
+	MAX_X: 800,
+	MAX_Y: 800,
 	SCALE: 3,
+	FRAME_TIMES_COUNT: 20,
 }
 
 function Particle(x, y, color) {

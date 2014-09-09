@@ -7,14 +7,7 @@
 		var app;
 		window.addEventListener('load', function() {
 			app = new App(document.getElementById('main'));
-
-			window.setInterval(function() {
-				var x = Math.floor(Math.random() * App.const.MAX_X);
-				var y = Math.floor(Math.random() * App.const.MAX_Y);
-
-				app.addParticle(x, y);
-				app.drawParticles();
-			});
+			app.loop(function(app) {});
 		});
 	</script>
 </head>
@@ -22,7 +15,7 @@
 
 <div id="wrapper">
 	<div class="container">
-		<canvas id="main"></canvas>
+		<canvas id="main" width="800" height="800"></canvas>
 	</div>
 </div>
 </body>
