@@ -87,9 +87,9 @@ function App(canvas) {
 App.randomColor = function() {
 	var r, g, b;
 
-	r = Math.floor(Math.random() * 20) * 10 + 55;
-	g = Math.floor(Math.random() * 20) * 10 + 55;
-	b = Math.floor(Math.random() * 20) * 10 + 55;
+	r = Math.floor(Math.random() * 20) * 10;
+	g = Math.floor(Math.random() * 20) * 10;
+	b = Math.floor(Math.random() * 20) * 10;
 
 	return '#' + (r < 16 ? '0' : '') + r.toString(16)
 		+ (g < 16 ? '0' : '') + g.toString(16)
