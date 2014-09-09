@@ -97,9 +97,9 @@ App.randomColor = function() {
 }
 
 App.const = {
-	MAX_X: 800,
-	MAX_Y: 800,
-	SCALE: 3,
+	MAX_X: 200,
+	MAX_Y: 200,
+	SCALE: 4,
 	FRAME_TIMES_COUNT: 20,
 }
 
