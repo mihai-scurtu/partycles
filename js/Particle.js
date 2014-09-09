@@ -6,6 +6,8 @@ function Particle(x, y, color) {
 	this.scale = 2;
 	this.color = '';
 
+	this.forces = [];
+
 	if(typeof(color) == 'string' && color.match(/^#?[a-fA-F0-9]{6}$/)) {
 		this.color = '#' + color.replace('#', '');	
 	} else {
@@ -23,5 +25,20 @@ function Particle(x, y, color) {
 		ctx.arc(x, y, radius, 0, 2*Math.PI);
 		ctx.closePath();
 		ctx.fill();
+	}
+
+	this.addForce = function(force) {
+		$this.forces.push(force);
+	}
+
+	this.applyForces = function(delta) {
+		if($this.forces.length) {
+			for(var i = 0; i < $this.forces.length; i++) {
+				var force = $this.forces[i];
+
+				$this.x += force.x * delta;
+				$this.y += force.y * delta; 
+			}
+		}
 	}
 }

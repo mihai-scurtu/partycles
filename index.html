@@ -15,8 +15,21 @@
 	        var y = Math.floor(Math.random() * App.const.MAX_Y);
 
 	        app.addParticle(x, y);
+
+	        app.particles[app.particles.length - 1].addForce(Force.random(0.1))
 	      } else {
-	      	app.particles.shift();
+	      	// app.particles.shift();
+	      }
+
+	      for(var i = 0; i < app.particles.length; i++) {
+	      	var p = app.particles[i];
+
+	      	p.applyForces(app.delta);
+
+	      	if(p.x < 0 || p.y < 0 || p.x > App.const.MAX_X || p.y > App.const.MAX_Y) {
+	      		app.particles.splice(i, 1);
+	      		delete p;
+	      	}
 	      }
 
         app.drawParticles();
