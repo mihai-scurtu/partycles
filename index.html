@@ -7,7 +7,12 @@
 		var app;
 		window.addEventListener('load', function() {
 			app = new App(document.getElementById('main'));
-			app.loop(function(app) {});
+			app.loop(function(delta) {
+        var x = Math.floor(Math.random() * App.const.MAX_X);
+        var y = Math.floor(Math.random() * App.const.MAX_Y);
+
+        app.addParticle(x, y);
+			});
 		});
 	</script>
 </head>
@@ -20,3 +25,4 @@
 </div>
 </body>
 </html>
+            

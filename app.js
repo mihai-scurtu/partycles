@@ -35,8 +35,8 @@ function App(canvas) {
 		
 		$this.ctx.clearRect(0, 0, App.const.SCALE * App.const.MAX_X, App.const.SCALE * App.const.MAX_Y);
 
-		if(typeof callback == 'Object') {
-			callback($this);
+		if(callback !== undefined) {
+			callback();
 		}
 
 		$this.drawParticles();
@@ -45,6 +45,7 @@ function App(canvas) {
 		var fps;
 
 		$this.delta = newTime - _time;
+		// console.log($this.delta);
 
 		if(_frameTimes.length = App.const.FRAME_TIMES_COUNT) {
 			_frameTimes.shift();
@@ -59,7 +60,8 @@ function App(canvas) {
 		$this.ctx.fillText(Math.floor(fps), 25, 25);
 
 		_time = newTime;
-		setTimeout($this.loop, Math.floor(1000 / $this.targetFPS));
+		console.log(Math.floor(1000 / $this.targetFPS) - $this.delta);
+		setTimeout(function() {$this.loop(callback)}, Math.floor(1000 / $this.targetFPS) - $this.delta);
 	}
 
 	this.frameTime = function() {
