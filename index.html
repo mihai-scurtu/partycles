@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript">
+		var app;
+		window.addEventListener('load', function() {
+			app = new App(document.getElementById('main'));
+
+			window.setInterval(function() {
+				var x = Math.floor(Math.random() * App.const.MAX_X);
+				var y = Math.floor(Math.random() * App.const.MAX_Y);
+
+				app.addParticle(x, y);
+				app.drawParticles();
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div id="wrapper">
+	<div class="container">
+		<canvas id="main"></canvas>
+	</div>
+</div>
+</body>
+</html>
