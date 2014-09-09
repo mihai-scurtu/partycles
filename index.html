@@ -12,6 +12,8 @@
         var y = Math.floor(Math.random() * App.const.MAX_Y);
 
         app.addParticle(x, y);
+
+        app.ctx.fillText(app.particles.length, 25, 50);
 			});
 		});
 	</script>
