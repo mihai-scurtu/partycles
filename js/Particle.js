@@ -31,14 +31,25 @@ function Particle(x, y, color) {
 		$this.forces.push(force);
 	}
 
-	this.applyForces = function(delta) {
+	this.applyForce = function(delta) {
+		var force = $this.force();
+
+		$this.x += force.x * delta;
+		$this.y += force.y * delta; 
+		
+	}
+
+	this.force = function() {
+		var f = new Force(0, 0);
 		if($this.forces.length) {
 			for(var i = 0; i < $this.forces.length; i++) {
 				var force = $this.forces[i];
 
-				$this.x += force.x * delta;
-				$this.y += force.y * delta; 
+				f.x += force.x;
+				f.y += force.y; 
 			}
 		}
+
+		return f;
 	}
 }
