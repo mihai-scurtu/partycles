@@ -23,7 +23,7 @@
 					p.applyForce(engine.delta);
 
 					if(p.x < 0 || p.y < 0 || p.x > ParticleEngine.const.MAX_X || p.y > ParticleEngine.const.MAX_Y) {
-						engine.removeParticle(i);
+						engine.removeParticle(p);
 					}
 				}
 

@@ -16,9 +16,16 @@ function ParticleEngine(canvas) {
 		$this.particles.push(new Particle(x, y, color));
 	}
 
-	this.removeParticle = function(i) {
-		$this.particles.splice(i, 1);
-		delete p;
+	this.removeParticle = function(p) {
+		for(var i = 0; i < $this.particles.length; i++) {
+			var q = this.particles[i];
+
+			if(p == q) {
+				$this.particles.splice(i, 1);
+				delete q;
+			}
+		}
+		
 	}
 
 	this.drawParticles = function() {
