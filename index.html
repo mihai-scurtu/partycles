@@ -38,8 +38,14 @@
 
 						
 						if(p != q) {
-							if(Math.abs(p.x - q.x) < p.scale + q.scale && Math.abs(p.y - q.y) < p.scale + q.scale) {
+							if(Math.abs(p.x - q.x) * ParticleEngine.const.SCALE < p.scale + q.scale 
+								&& Math.abs(p.y - q.y) * ParticleEngine.const.SCALE < p.scale + q.scale) {
 								collisions += 1;
+
+								console.log(Math.abs(p.x - q.x) * ParticleEngine.const.SCALE, Math.abs(p.y - q.y) * ParticleEngine.const.SCALE);
+
+								engine.removeParticle(p);
+								engine.removeParticle(q);
 							}
 						}
 					}
