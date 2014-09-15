@@ -10,14 +10,12 @@
 		window.addEventListener('load', function() {
 			engine = new ParticleEngine(document.getElementById('main'));
 			engine.loop(function() {
-				if(engine.getFPS() > 59) {
-					var x = Math.floor(Math.random() * ParticleEngine.const.MAX_X);
-					var y = Math.floor(Math.random() * ParticleEngine.const.MAX_Y);
+				var x = Math.floor(Math.random() * ParticleEngine.const.MAX_X);
+				var y = Math.floor(Math.random() * ParticleEngine.const.MAX_Y);
 
-					engine.addParticle(x, y);
+				engine.addParticle(x, y);
 
-					engine.particles[engine.particles.length - 1].addForce(Force.random(0.1))
-				} 
+				engine.particles[engine.particles.length - 1].addForce(Force.random(0.1))
 
 				for(var i = 0; i < engine.particles.length; i++) {
 					var p = engine.particles[i];
