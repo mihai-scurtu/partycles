@@ -1,4 +1,4 @@
-function App(canvas) {
+function ParticleEngine(canvas) {
 	var $this = this;
 
 	var _time;
@@ -33,7 +33,7 @@ function App(canvas) {
 			_time = (new Date()).getTime();
 		}
 		
-		$this.ctx.clearRect(0, 0, App.const.SCALE * App.const.MAX_X, App.const.SCALE * App.const.MAX_Y);
+		$this.ctx.clearRect(0, 0, ParticleEngine.const.SCALE * ParticleEngine.const.MAX_X, ParticleEngine.const.SCALE * ParticleEngine.const.MAX_Y);
 
 		if(callback !== undefined) {
 			callback();
@@ -45,7 +45,7 @@ function App(canvas) {
 		$this.delta = newTime - _time;
 		// console.log($this.delta);
 
-		if(_frameTimes.length = App.const.FRAME_TIMES_COUNT) {
+		if(_frameTimes.length = ParticleEngine.const.FRAME_TIMES_COUNT) {
 			_frameTimes.shift();
 		}
 
@@ -82,7 +82,7 @@ function App(canvas) {
 	}
 }
 
-App.randomColor = function() {
+ParticleEngine.randomColor = function() {
 	var r, g, b;
 
 	r = Math.floor(Math.random() * 20) * 10;
@@ -94,7 +94,7 @@ App.randomColor = function() {
 		+ (b < 16 ? '0' : '') + b.toString(16);
 }
 
-App.const = {
+ParticleEngine.const = {
 	MAX_X: 200,
 	MAX_Y: 200,
 	SCALE: 4,

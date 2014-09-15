@@ -11,12 +11,12 @@ function Particle(x, y, color) {
 	if(typeof(color) == 'string' && color.match(/^#?[a-fA-F0-9]{6}$/)) {
 		this.color = '#' + color.replace('#', '');	
 	} else {
-		this.color = App.randomColor();
+		this.color = ParticleEngine.randomColor();
 	};
 
 	this.draw = function(ctx) {
-		var x = $this.x * App.const.SCALE;
-		var y = $this.y * App.const.SCALE;
+		var x = $this.x * ParticleEngine.const.SCALE;
+		var y = $this.y * ParticleEngine.const.SCALE;
 		var radius = $this.scale;
 
 		ctx.fillStyle = $this.color; 
