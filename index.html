@@ -28,9 +28,30 @@
 					}
 				}
 
-				engine.drawParticles();
+				// check colisons 
+				var collisions = 0;
+				var time = (new Date()).getTime();
+				for(var i = 0; i < engine.particles.length; i++) {
+					var p = engine.particles[i];
 
+					for(var j = 0; j < engine.particles.length; j++) {
+						var q = engine.particles[j];
+
+						
+						if(p != q) {
+							if(Math.abs(p.x - q.x) < p.scale + q.scale && Math.abs(p.y - q.y) < p.scale + q.scale) {
+								collisions += 1;
+							}
+						}
+					}
+				}
+
+				time = (new Date()).getTime() - time;
+
+				engine.ctx.fillText(time + 'ms ' + collisions + ' collisions', 25, 75);
 				engine.ctx.fillText(engine.particles.length, 25, 50);
+
+				engine.drawParticles();
 			});
 		});
 	</script>
